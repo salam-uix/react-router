@@ -4,13 +4,19 @@ import Home from './components/Home/Home';
 import Friends from './components/Friends/Friends';
 import About from './components/About/About';
 import NotFound from './components/NotFound/NotFound';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Header from './components/Header/Header';
+import FriendDetail from './components/FriendDetail/FriendDetail';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
+        <Header></Header>
         <Switch>
+          <Route exact path="/">
+            <Home></Home>
+          </Route>
           <Route path="/home">
             <Home></Home>
           </Route>
@@ -20,14 +26,14 @@ function App() {
           <Route path="/friends">
             <Friends></Friends>
           </Route>
-          <Route exact path="/">
-            <Home></Home>
+          <Route path="/friend/:friendId">
+            <FriendDetail></FriendDetail>
           </Route>
           <Route>
             <NotFound></NotFound>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
